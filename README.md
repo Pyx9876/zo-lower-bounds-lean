@@ -14,17 +14,27 @@ This directory contains the machine-checked formalization of the deterministic l
 
 Let $d \ge 1$, $L, \Delta, \varepsilon > 0$, $1 \le E \le d$, and $T = L\Delta/\varepsilon^2 \ge 1$. For both the exact-value oracle and the rank-priced linear query oracle, the deterministic complexity $N_{\mathrm{det}}(\mathcal{B}^d_{L,\Delta,E})$ is finite and satisfies:
 
-$$d \le N_{\mathrm{det}} \le \min\bigl\{10dT,\; 100\sqrt{dET(d+T)}\bigr\},$$
+```math
+d \le N_{\mathrm{det}} \le \min\bigl\{10dT,\; 100\sqrt{dET(d+T)}\bigr\},
+```
 
-$$ET \le d \implies \frac{d}{2250}\min\Bigl\{T, \sqrt{\frac{ET}{\log(e+T)}}\Bigr\} \le N_{\mathrm{det}} \le 100\sqrt{2}\,d\sqrt{ET},$$
+```math
+ET \le d \implies \frac{d}{2250}\min\Bigl\{T, \sqrt{\frac{ET}{\log(e+T)}}\Bigr\} \le N_{\mathrm{det}} \le 100\sqrt{2}\,d\sqrt{ET},
+```
 
-$$E \ge T\log(e+T) \implies N_{\mathrm{det}} \ge \frac{dT}{2359296},$$
+```math
+E \ge T\log(e+T) \implies N_{\mathrm{det}} \ge \frac{dT}{2359296},
+```
 
-$$T\log(e+T) \le E \le \frac{d}{T} \implies N_{\mathrm{det}} \ge \frac{dT}{2250}.$$
+```math
+T\log(e+T) \le E \le \frac{d}{T} \implies N_{\mathrm{det}} \ge \frac{dT}{2250}.
+```
 
 In addition, the randomized three-point method (Theorem B.8, `b:thm:stp`) achieves:
 
-$$N_{\mathrm{rand}}(\mathcal{B}^d_{L,\Delta,E}) \le 23ET.$$
+```math
+N_{\mathrm{rand}}(\mathcal{B}^d_{L,\Delta,E}) \le 23ET.
+```
 
 These statements imply Theorem 3.2 (`thm:main-det`), the deterministic part of Corollary 3.3 (`cor:main-window`), and the upper bound of Theorem 3.1 (`thm:main-random`).
 
@@ -44,9 +54,9 @@ The formal proofs have the modular structure of Appendices B–E of the paper an
 - **Algorithm Execution**:
   - A deterministic algorithm maps each finite query-response transcript to its next query point and subspace, or to an output point.
   - The final output point is uncharged and unrestricted.
-  - $N_{\mathrm{det}}$ is the worst-case total cost incurred before outputting an $\varepsilon$-stationary point ($\|\nabla f(\hat{x})\| \le \varepsilon$).
+  - $N_{\mathrm{det}}$ is the worst-case total cost incurred before outputting an $\varepsilon$-stationary point ($\Vert \nabla f(\hat{x})\Vert  \le \varepsilon$).
 - **Function Class $\mathcal{B}^d_{L,\Delta,E}$**:
-  - Functions $f$ on $\mathbb{R}^d$ with $L$-Lipschitz gradient, initial gap $f(0) - \inf f \le \Delta$, such that a single fixed positive semidefinite matrix $H \succeq 0$ with $\|H\|_{\mathrm{op}} \le L$ and $\operatorname{tr}(H) \le LE$ controls the derivative of $\nabla f$ almost everywhere on the sublevel set $\{x : f(x) < f(0)\}$.
+  - Functions $f$ on $\mathbb{R}^d$ with $L$-Lipschitz gradient, initial gap $f(0) - \inf f \le \Delta$, such that a single fixed positive semidefinite matrix $H \succeq 0$ with $\Vert H\Vert _{\mathrm{op}} \le L$ and $\operatorname{tr}(H) \le LE$ controls the derivative of $\nabla f$ almost everywhere on the sublevel set $\lbrace x : f(x) \lt f(0)\rbrace $.
   - **Segment Equivalence**: Lemma B.2 (`a:lem:hessian-segment`) establishes that this almost-everywhere Hessian condition is equivalent to the segment upper model used in the resistance proofs.
 
 ---
@@ -87,7 +97,7 @@ As detailed in Appendix J of the paper, the following results are not formalized
 | `a:thm:stages` | `ExactZO.S4Selection.deterministic_stage_lower`, `ExactZO.S4Selection.deterministic_stage_lower_value` | Assembly of stage lower bounds with concrete matrix wrappers for both oracles. |
 | `a:cor:smooth-rate` | `ExactZO.S4Selection.deterministic_rounded_lower`, `ExactZO.S4Selection.deterministic_rounded_lower_value`, `ExactZO.S4Selection.deterministic_window_lower`, `ExactZO.S4Selection.deterministic_window_lower_value` | Rounded smooth rates ($d/2250$) and trace window lower bounds ($dT/2359296$). |
 | `u:lem:residual` / `line` / `blocks` | `ExactZO.SubspaceEstimate`, `ExactZO.SubspaceResidual`, `ExactZO.LineSearch`, `ExactZO.SubspaceInvariant` | Invariants and finite-difference estimators for deterministic subspace search. |
-| `u:thm:capacity` / `u:eq:main` | `ExactZO.SubspaceUpper.capacity_value_upper`, `ExactZO.SubspaceUpper.deterministic_value_upper`, `ExactZO.SubspaceUpper.deterministic_linear_upper`, `ExactZO.SubspaceUpper.subspace_value_upper_small_time` | Capacity bound $\min\{10dT, 100\sqrt{dET(d+T)}\}$ and small-time bound $100\sqrt{2}d\sqrt{ET}$. |
+| `u:thm:capacity` / `u:eq:main` | `ExactZO.SubspaceUpper.capacity_value_upper`, `ExactZO.SubspaceUpper.deterministic_value_upper`, `ExactZO.SubspaceUpper.deterministic_linear_upper`, `ExactZO.SubspaceUpper.subspace_value_upper_small_time` | Capacity bound $\min\lbrace 10dT, 100\sqrt{dET(d+T)}\rbrace $ and small-time bound $100\sqrt{2}d\sqrt{ET}$. |
 | `thm:main-det` | `ExactZO.MainResults.main_det_verified`, `ExactZO.MainResults.main_det_hessian_finite` | Verified deterministic complexity bounds for value and linear query oracles on class $\mathcal{B}$. |
 | `a:lem:sphere-split` | `ExactZO.Gaussian.sphereGaussian_succ_split`, `ExactZO.Gaussian.sphereFirstCoordinateLaw_second_moment`, `ExactZO.Gaussian.sphereGaussian_succ_split_linearIsometryEquiv` | Spherical Gaussian decomposition and first-coordinate distribution lemmas. |
 | `thm:main-random` | `ExactZO.MainResults.main_random_upper_twenty_three`, `ExactZO.MainResults.main_random_hessian_upper` | Unconditional $23ET$ upper bound for the randomized three-point method with finite Gaussian seeds. |
