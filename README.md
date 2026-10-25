@@ -49,14 +49,14 @@ The formal proofs have the modular structure of Appendices B–E of the paper an
 ## 2. Model and Problem Formulation
 
 - **Oracles and Costs**:
-  - A query $(x, V)$ returns $(f(x), V^\top \nabla f(x))$ at cost $1 + \operatorname{rank}(V)$.
+  - A query $(x, V)$ returns $(f(x), V^\top \nabla f(x))$ at cost $1 + \mathrm{rank}(V)$.
   - Exact-value queries correspond to $V = 0$ (cost $1$).
 - **Algorithm Execution**:
   - A deterministic algorithm maps each finite query-response transcript to its next query point and subspace, or to an output point.
   - The final output point is uncharged and unrestricted.
   - $N_{\mathrm{det}}$ is the worst-case total cost incurred before outputting an $\varepsilon$-stationary point ($\Vert \nabla f(\hat{x})\Vert  \le \varepsilon$).
 - **Function Class $\mathcal{B}^d_{L,\Delta,E}$**:
-  - Functions $f$ on $\mathbb{R}^d$ with $L$-Lipschitz gradient, initial gap $f(0) - \inf f \le \Delta$, such that a single fixed positive semidefinite matrix $H \succeq 0$ with $\Vert H\Vert _{\mathrm{op}} \le L$ and $\operatorname{tr}(H) \le LE$ controls the derivative of $\nabla f$ almost everywhere on the sublevel set $\lbrace x : f(x) \lt f(0)\rbrace $.
+  - Functions $f$ on $\mathbb{R}^d$ with $L$-Lipschitz gradient, initial gap $f(0) - \inf f \le \Delta$, such that a single fixed positive semidefinite matrix $H \succeq 0$ with $\Vert H\Vert _{\mathrm{op}} \le L$ and $\mathrm{tr}(H) \le LE$ controls the derivative of $\nabla f$ almost everywhere on the sublevel set $\lbrace x : f(x) \lt f(0)\rbrace $.
   - **Segment Equivalence**: Lemma B.2 (`a:lem:hessian-segment`) establishes that this almost-everywhere Hessian condition is equivalent to the segment upper model used in the resistance proofs.
 
 ---
